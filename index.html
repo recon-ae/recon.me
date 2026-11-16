@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECON // Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Background Glow Effects */
+        .glow-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 40%);
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #9ca3af;
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96, 165, 250, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #60a5fa;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        /* Buttons Grid */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px 24px;
+            border-radius: 14px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            background: rgba(96, 165, 250, 0.15);
+            border-color: #60a5fa;
+            transform: scale(1.02);
+        }
+
+        /* Admin Trigger */
+        .admin-trigger {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            transition: background 0.3s;
+        }
+
+        .admin-trigger:hover {
+            background: #60a5fa;
+        }
+
+        /* Scroll indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+            color: #60a5fa;
+            font-size: 24px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+
+    <!-- Admin Trigger Button -->
+    <div class="admin-trigger" onclick="openAdmin()" title="Tahrirlash">+</div>
+
+    <!-- Header / Hero Section -->
+    <header>
+        <div class="logo">RECON</div>
+        <p class="tagline">Texnologiyalar, avtomatlashtirish, e-sport va ijod birlashgan yagona shaxsiy makon.</p>
+        <div class="scroll-down">↓</div>
+    </header>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 style="font-size: 2.2rem; margin-bottom: 30px; color: #f8fafc;">Tajriba & Faoliyat</h2>
+            
+            <div class="card">
+                <h3>Uzum Market // Lead Mentor</h3>
+                <p>Pick-up punktlari (PVZ / BTP) bo‘yicha operatsiyalarni boshqarish, hududlarda jarayonlarni optimizatsiya qilish va yangi kadrlarni yo‘naltirish bo‘yicha yetakchi tajriba.</p>
+            </div>
+
+            <div class="card">
+                <h3>Dubai // Hospitality & Esports</h3>
+                <p>Dubaida restoran industriyasida tajriba to‘plash hamda xalqaro darajadagi e-sport jamoasini shakllantirish yo‘lidagi muhim qadamlar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links & Social Section -->
+    <section id="socials">
+        <div class="container">
+            <h2 style="font-size: 2.2rem; margin-bottom: 30px; color: #f8fafc;">Aloqa & Tarmoqlar</h2>
+            <p style="color: #9ca3af; margin-bottom: 30px;">Asosiy sahifalar va ijodiy kanallarimga bir bosishda o‘ting.</p>
+            
+            <div class="links-grid" id="dynamic-links">
+                <a href="https://t.me/recon_ae" target="_blank" class="btn">
+                    <span>💬 Telegram (@recon_ae)</span>
+                </a>
+                <a href="https://youtube.com/@RECONBASEL" target="_blank" class="btn">
+                    <span>📺 YouTube (@RECONBASEL)</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function openAdmin() {
+            let pass = prompt("Parolni kiriting (Eslatma / Podskazka: r.n):");
+            if (pass === "recon.basel") {
+                let newTitle = prompt("Yangi bo‘lim sarlavhasini kiriting (yoki rasm havolasi):");
+                if (newTitle) {
+                    alert("Muvaffaqiyatli qabul qilindi! (Bu yerga qo'shimcha kontentni saqlash kodini ulashingiz mumkin).");
+                }
+            } else if (pass !== null) {
+                alert("Parol noto‘g‘ri!");
+            }
+        }
+    </script>
+</body>
+</html>
