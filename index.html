@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RECON // Hub</title>
+    <title>RECON // Professional Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -14,7 +14,7 @@
         }
 
         body {
-            background-color: #0b0f19;
+            background-color: #07090e;
             color: #f3f4f6;
             overflow-x: hidden;
         }
@@ -27,18 +27,48 @@
             height: 100vh;
             pointer-events: none;
             z-index: -1;
-            background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 40%);
+            background: radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(147, 51, 234, 0.12) 0%, transparent 40%);
         }
 
+        /* Top Bar for Language Switcher */
+        .top-bar {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        /* Hero / Logo Section */
         header {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 20px;
+            position: relative;
             animation: fadeIn 1.5s ease-in-out;
         }
 
@@ -47,37 +77,98 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .logo {
-            font-size: 3.5rem;
+        /* Custom R & B Logo */
+        .recon-logo-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .logo-symbol {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #9333ea);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+            letter-spacing: -2px;
+        }
+
+        .logo-text {
+            font-size: 3rem;
             font-weight: 800;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             background: linear-gradient(135deg, #60a5fa, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
         }
 
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #9ca3af;
-            max-width: 600px;
-            margin-bottom: 30px;
+            max-width: 650px;
+            margin-bottom: 40px;
             line-height: 1.6;
         }
 
-        section {
-            min-height: 80vh;
+        /* Navigation Grid (Buttons) */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 18px 20px;
+            border-radius: 16px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 60px 20px;
-            text-align: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Content Sections */
+        section {
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 850px;
             width: 100%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            padding-left: 15px;
         }
 
         .card {
@@ -92,62 +183,121 @@
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
             color: #60a5fa;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .card p {
             color: #cbd5e1;
-            line-height: 1.6;
+            line-height: 1.7;
             margin-bottom: 15px;
         }
 
-        .card img {
-            width: 100%;
-            max-height: 350px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-top: 10px;
-        }
-
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .btn {
+        .badge-list {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .badge {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Social Activity Section */
+        .social-activity-box {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .social-title {
+            font-size: 1.5rem;
+            color: #9ca3af;
+            margin-bottom: 25px;
+        }
+
+        .social-links-animated {
+            display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-item {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 16px 24px;
-            border-radius: 14px;
-            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            color: #f3f4f6;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUpFade 0.8s forwards;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
         }
 
-        .btn:hover {
-            background: rgba(96, 165, 250, 0.15);
-            border-color: #60a5fa;
-            transform: scale(1.02);
+        .social-item:nth-child(1) { animation-delay: 0.2s; }
+        .social-item:nth-child(2) { animation-delay: 0.4s; }
+        .social-item:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes slideUpFade {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .social-item:hover {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+        }
+
+        /* Corporate Footer / Complaint Section */
+        footer {
+            background: #040609;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .complaint-btn {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .complaint-btn:hover {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: #ef4444;
         }
 
         /* Admin Trigger */
         .admin-trigger {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(96, 165, 250, 0.2);
-            border: 1px solid #60a5fa;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3b82f6;
             color: white;
             width: 55px;
             height: 55px;
@@ -159,14 +309,11 @@
             cursor: pointer;
             z-index: 100;
             backdrop-filter: blur(5px);
-            box-shadow: 0 4px 20px rgba(96, 165, 250, 0.4);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
             transition: transform 0.3s;
         }
 
-        .admin-trigger:hover {
-            transform: scale(1.1);
-            background: #60a5fa;
-        }
+        .admin-trigger:hover { transform: scale(1.1); background: #3b82f6; }
 
         /* Modal Styles */
         .modal {
@@ -193,136 +340,153 @@
             text-align: left;
         }
 
-        .modal-content h3 {
-            margin-bottom: 20px;
-            color: #60a5fa;
-        }
-
-        .modal-content label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: #9ca3af;
-        }
-
+        .modal-content h3 { margin-bottom: 20px; color: #3b82f6; }
+        .modal-content label { display: block; margin-bottom: 8px; font-size: 0.9rem; color: #9ca3af; }
         .modal-content input, .modal-content textarea {
-            width: 100%;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: white;
-            margin-bottom: 15px;
-            font-size: 1rem;
+            width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; color: white; margin-bottom: 15px; font-size: 1rem;
         }
-
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 15px;
-        }
-
-        .modal-btn {
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
+        .modal-buttons { display: flex; gap: 10px; justify-content: flex-end; margin-top: 15px; }
+        .modal-btn { padding: 10px 20px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; }
         .btn-save { background: #3b82f6; color: white; }
         .btn-cancel { background: rgba(255, 255, 255, 0.1); color: white; }
 
         .action-options button {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 10px;
-            text-align: left;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.2s;
+            width: 100%; padding: 14px; margin-bottom: 10px; background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1); color: white; border-radius: 10px; text-align: left; cursor: pointer; font-size: 1rem; transition: 0.2s;
         }
-
-        .action-options button:hover {
-            background: rgba(96, 165, 250, 0.2);
-            border-color: #60a5fa;
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            animation: bounce 2s infinite;
-            color: #60a5fa;
-            font-size: 24px;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
+        .action-options button:hover { background: rgba(59, 130, 246, 0.2); border-color: #3b82f6; }
     </style>
 </head>
 <body>
 
     <div class="glow-bg"></div>
 
-    <!-- Admin Trigger Button (+) -->
+    <!-- Language Switcher Bar -->
+    <div class="top-bar">
+        <button class="lang-btn active" onclick="setLanguage('uz')">UZ</button>
+        <button class="lang-btn" onclick="setLanguage('ru')">RU</button>
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+    </div>
+
+    <!-- Admin Trigger (+) -->
     <div class="admin-trigger" onclick="checkAuth()">+</div>
 
-    <!-- Main Header -->
+    <!-- Header Section with Logo R & B -->
     <header>
-        <div class="logo" id="site-logo">RECON</div>
-        <p class="tagline" id="site-tagline">Texnologiyalar, avtomatlashtirish, e-sport va ijod birlashgan yagona shaxsiy makon.</p>
-        <div class="scroll-down">↓</div>
+        <div class="recon-logo-box">
+            <div class="logo-symbol">RB</div>
+            <div class="logo-text" id="site-logo">RECON</div>
+        </div>
+        <p class="tagline" id="t-tagline">Texnologiyalar, operatsion boshqaruv, e-sport va innovatsion loyihalar markazi.</p>
+
+        <!-- Navigation Buttons (Interactive Links to Sections) -->
+        <div class="nav-grid">
+            <a href="#uzum-section" class="nav-btn">
+                <span id="t-nav1">📦 Uzum & Ish Faoliyati</span>
+            </a>
+            <a href="#novvoy-section" class="nav-btn">
+                <span id="t-nav2">🥖 Novvoyxona & Biznes</span>
+            </a>
+            <a href="#dubai-section" class="nav-btn">
+                <span id="t-nav3">✈️ Restoran & Dubay</span>
+            </a>
+            <a href="#tech-section" class="nav-btn">
+                <span id="t-nav4">💻 Qiziqishlar & Tech</span>
+            </a>
+        </div>
     </header>
 
-    <!-- Experience / Content Section -->
-    <section id="content-section">
+    <!-- Uzum Section -->
+    <section id="uzum-section">
         <div class="container">
-            <h2 style="font-size: 2.2rem; margin-bottom: 30px; color: #f8fafc;">Faoliyat & Loyihalar</h2>
-            <div id="dynamic-cards">
-                <div class="card">
-                    <h3>Uzum Market // Lead Mentor</h3>
-                    <p>Pick-up punktlari (PVZ / BTP) bo‘yicha operatsiyalarni boshqarish va jarayonlarni optimizatsiya qilish.</p>
-                </div>
-                <div class="card">
-                    <h3>Dubai // Hospitality & Esports</h3>
-                    <p>Dubaida restoran industriyasida tajriba to‘plash va e-sport jamoasini shakllantirish.</p>
+            <h2 class="section-title" id="t-uzum-title">Uzum Market // Operatsiyalar va Boshqaruv</h2>
+            <div class="card">
+                <h3 id="t-uzum-h">Yetakchi Murabbiy & Nastavnik</h3>
+                <p id="t-uzum-p">Uzum Market tizimida qisqa muddat ichida yuksak natijalarga erishib, 3 ta hudud bo‘yicha pick-up punktlari (PVZ / BTP) administratorlariga ko‘maklashish, operatsion jarayonlarni nazorat qilish va yangi kadrlarni o‘qitish bo‘yicha Yetakchi murabbiy va Nastavnik lavozimida faoliyat yuritaman. 3 tilda erkin muloqot qila olaman va Jira orqali vazifalarni boshqaraman.</p>
+                <div class="badge-list">
+                    <span class="badge">Jira Task Management</span>
+                    <span class="badge">Multi-lingual (Uz, Ru, En)</span>
+                    <span class="badge">Team Leadership</span>
+                    <span class="badge">Operations Control</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Links Section -->
-    <section id="socials">
+    <!-- Novvoyxona Section -->
+    <section id="novvoy-section">
         <div class="container">
-            <h2 style="font-size: 2.2rem; margin-bottom: 30px; color: #f8fafc;">Aloqa & Tarmoqlar</h2>
-            <div class="links-grid" id="dynamic-links">
-                <a href="https://t.me/recon_ae" target="_blank" class="btn" id="tg-link">
-                    <span>💬 Telegram (@recon_ae)</span>
-                </a>
-                <a href="https://youtube.com/@RECONBASEL" target="_blank" class="btn" id="yt-link">
-                    <span>📺 YouTube (@RECONBASEL)</span>
-                </a>
+            <h2 class="section-title" id="t-nov-title">Novvoyxona & Biznes Tajribasi</h2>
+            <div class="card">
+                <h3 id="t-nov-h">Xususiy Biznes va Hunar</h3>
+                <p id="t-nov-p">O‘zim noldan novvoyxona qurib, boshqarganman. Non va somsa pishirish sirlarini to‘liq o‘rganib, tog‘alarimni ham shu ishga jalb qilganman va ularga ushbu hunarni o‘rgatib, amalda boshqarganman.</p>
+                <div class="badge-list">
+                    <span class="badge">Business Management</span>
+                    <span class="badge">Craft & Baking</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Action Modal -->
+    <!-- Dubai & Restaurant Section -->
+    <section id="dubai-section">
+        <div class="container">
+            <h2 class="section-title" id="t-dubai-title">Xalqaro Tajriba // Dubay</h2>
+            <div class="card">
+                <h3 id="t-dubai-h">Restoran Sektorida Faoliyat</h3>
+                <p id="t-dubai-p">Dubaida restoran industriyasida xalqaro darajadagi xizmat ko‘rsatish va muomalasini o‘rganib, amaliy tajriba to‘plaganman. Shu bilan birga PUBG Mobile bo‘yicha xalqaro e-sport jamoasini shakllantirganman.</p>
+                <div class="badge-list">
+                    <span class="badge">Hospitality</span>
+                    <span class="badge">Esports Team Founder</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech & Interests Section -->
+    <section id="tech-section">
+        <div class="container">
+            <h2 class="section-title" id="t-tech-title">Texnologiyalar & Qiziqishlar</h2>
+            <div class="card">
+                <h3 id="t-tech-h">Dasturlash va Avtomatlashtirish</h3>
+                <p id="t-tech-p">Python, aiogram, JavaScript va web texnologiyalar yordamida shaxsiy Telegram botlar (masalan, UC savdo boti va boshqaruv panellari), Vercel/Supabase asosida PWA ilovalar yarataman.</p>
+                <div class="badge-list">
+                    <span class="badge">Python / aiogram</span>
+                    <span class="badge">HTML / CSS / JS</span>
+                    <span class="badge">PWA Apps</span>
+                    <span class="badge">PUBG Mobile / UC Bot</span>
+                </div>
+            </div>
+            <div id="extra-cards"></div>
+        </div>
+    </section>
+
+    <!-- Social Activity Section (Non-clickable button with animated links below) -->
+    <div class="social-activity-box">
+        <div class="social-title" id="t-social-title">Ijtimoiy tarmoqdagi faollik</div>
+        <div class="social-links-animated">
+            <a href="https://t.me/recon_ae" target="_blank" class="social-item">💬 Telegram: @recon_ae</a>
+            <a href="https://instagram.com/19.mamirov" target="_blank" class="social-item">📸 Instagram: 19.mamirov</a>
+            <a href="mailto:lochinbekm35@gmail.com" class="social-item">✉️ Email: lochinbekm35@gmail.com</a>
+        </div>
+    </div>
+
+    <!-- Corporate Footer / Complaint Section -->
+    <footer>
+        <button class="complaint-btn" onclick="alert(translations[currentLang].alertText)">
+            ⚠️ <span id="t-complaint">Muammo bormi? Shikoyat va takliflar</span>
+        </button>
+        <p style="color: #4b5563; font-size: 0.85rem; margin-top: 15px;">© 2026 RECON. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <!-- Admin Panel Modal -->
     <div class="modal" id="actionModal">
         <div class="modal-content">
             <h3>RECON Admin Panel</h3>
             <div class="action-options">
-                <button onclick="openCardModal()">📝 Yangi Blok / Ma'lumot qo'shish</button>
-                <button onclick="openImageModal()">🖼️ Rasm yuklash va qo'shish</button>
-                <button onclick="openLinkModal()">🔗 Havola (Link) qo'shish</button>
-                <button onclick="openSettingsModal()">⚙️ Sayt sozlamalari (Logo & Links)</button>
+                <button onclick="openCardModal()">📝 Yangi Ma'lumot / Blok qo'shish</button>
+                <button onclick="openSettingsModal()">⚙️ Brend va Sozlamalarni O'zgartirish</button>
             </div>
             <div class="modal-buttons" style="margin-top: 20px;">
                 <button class="modal-btn btn-cancel" onclick="closeModal()">Yopish</button>
@@ -330,14 +494,13 @@
         </div>
     </div>
 
-    <!-- Specific Modals for Inputs -->
     <div class="modal" id="cardModal">
         <div class="modal-content">
             <h3>Yangi Blok Qo'shish</h3>
             <label>Sarlavha:</label>
-            <input type="text" id="cardTitle" placeholder="Masalan: Yangi Loyiha">
+            <input type="text" id="cardTitle" placeholder="Masalan: Yangi yutuq">
             <label>Tavsif:</label>
-            <textarea id="cardDesc" placeholder="Batafsil ma'lumot yozing..."></textarea>
+            <textarea id="cardDesc" placeholder="Ma'lumot kiriting..."></textarea>
             <div class="modal-buttons">
                 <button class="modal-btn btn-save" onclick="saveCard()">Qo'shish</button>
                 <button class="modal-btn btn-cancel" onclick="closeModal()">Bekor qilish</button>
@@ -345,43 +508,11 @@
         </div>
     </div>
 
-    <div class="modal" id="imageModal">
-        <div class="modal-content">
-            <h3>Rasm Qo'shish</h3>
-            <label>Sarlavha:</label>
-            <input type="text" id="imgTitle" placeholder="Rasm nomi">
-            <label>Rasmni tanlang (Fayl):</label>
-            <input type="file" id="imgFile" accept="image/*">
-            <div class="modal-buttons">
-                <button class="modal-btn btn-save" onclick="saveImage()">Yuklash</button>
-                <button class="modal-btn btn-cancel" onclick="closeModal()">Bekor qilish</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="linkModal">
-        <div class="modal-content">
-            <h3>Yangi Havola Qo'shish</h3>
-            <label>Havola nomi (Mavzusi):</label>
-            <input type="text" id="linkName" placeholder="Masalan: GitHub Profilim">
-            <label>URL Manzil:</label>
-            <input type="text" id="linkUrl" placeholder="https://...">
-            <div class="modal-buttons">
-                <button class="modal-btn btn-save" onclick="saveLink()">Qo'shish</button>
-                <button class="modal-btn btn-cancel" onclick="closeModal()">Bekor qilish</button>
-            </div>
-        </div>
-    </div>
-
     <div class="modal" id="settingsModal">
         <div class="modal-content">
-            <h3>Sayt Sozlamalari</h3>
-            <label>Brend Nomi (Logo):</label>
+            <h3>Sozlamalar</h3>
+            <label>Brend Nomi:</label>
             <input type="text" id="setLogo" value="RECON">
-            <label>Telegram Link:</label>
-            <input type="text" id="setTg" value="https://t.me/recon_ae">
-            <label>YouTube Link:</label>
-            <input type="text" id="setYt" value="https://youtube.com/@RECONBASEL">
             <div class="modal-buttons">
                 <button class="modal-btn btn-save" onclick="saveSettings()">Saqlash</button>
                 <button class="modal-btn btn-cancel" onclick="closeModal()">Bekor qilish</button>
@@ -390,24 +521,112 @@
     </div>
 
     <script>
-        // Load saved data on startup
+        // Multi-language dictionary
+        const translations = {
+            uz: {
+                tagline: "Texnologiyalar, operatsion boshqaruv, e-sport va innovatsion loyihalar markazi.",
+                nav1: "📦 Uzum & Ish Faoliyati",
+                nav2: "🥖 Novvoyxona & Biznes",
+                nav3: "✈️ Restoran & Dubay",
+                nav4: "💻 Qiziqishlar & Tech",
+                uzumTitle: "Uzum Market // Operatsiyalar va Boshqaruv",
+                uzumH: "Yetakchi Murabbiy & Nastavnik",
+                uzumP: "Uzum Market tizimida qisqa muddat ichida yuksak natijalarga erishib, 3 ta hudud bo‘yicha pick-up punktlari (PVZ / BTP) administratorlariga ko‘maklashish, operatsion jarayonlarni nazorat qilish va yangi kadrlarni o‘qitish bo‘yicha Yetakchi murabbiy va Nastavnik lavozimida faoliyat yuritaman. 3 tilda erkin muloqot qila olaman va Jira orqali vazifalarni boshqaraman.",
+                novTitle: "Novvoyxona & Biznes Tajribasi",
+                novH: "Xususiy Biznes va Hunar",
+                novP: "O‘zim noldan novvoyxona qurib, boshqarganman. Non va somsa pishirish sirlarini to‘liq o‘rganib, tog‘alarimni ham shu ishga jalb qilganman va ularga ushbu hunarni o‘rgatib, amalda boshqarganman.",
+                dubaiTitle: "Xalqaro Tajriba // Dubay",
+                dubaiH: "Restoran Sektorida Faoliyat",
+                dubaiP: "Dubaida restoran industriyasida xalqaro darajadagi xizmat ko‘rsatish va muomalasini o‘rganib, amaliy tajriba to‘plaganman. Shu bilan birga PUBG Mobile bo‘yicha xalqaro e-sport jamoasini shakllantirganman.",
+                techTitle: "Texnologiyalar & Qiziqishlar",
+                techH: "Dasturlash va Avtomatlashtirish",
+                techP: "Python, aiogram, JavaScript va web texnologiyalar yordamida shaxsiy Telegram botlar (masalan, UC savdo boti va boshqaruv panellari), Vercel/Supabase asosida PWA ilovalar yarataman.",
+                socialTitle: "Ijtimoiy tarmoqdagi faollik",
+                complaint: "Muammo bormi? Shikoyat va takliflar",
+                alertText: "Xizmatlar yuzasidan muammo yoki takliflar bo‘lsa, to‘g‘ridan-to‘g‘ri Telegram (@recon_ae) orqali murojaat qilishingiz mumkin."
+            },
+            ru: {
+                tagline: "Центр технологий, операционного управления, киберспорта и инновационных проектов.",
+                nav1: "📦 Uzum & Работа",
+                nav2: "🥖 Пекарня & Бизнес",
+                nav3: "✈️ Ресторан & Дубай",
+                nav4: "💻 Интересы & Tech",
+                uzumTitle: "Uzum Market // Операции и Управление",
+                uzumH: "Ведущий Тренер & Наставник",
+                uzumP: "Добился высоких результатов в Uzum Market, работаю Ведущим тренером и наставником по поддержке администраторов пунктов выдачи (PVZ / BTP) в 3 регионах, контролю процессов и обучению кадров. Свободно владею 3 языками и управляю задачами через Jira.",
+                novTitle: "Опыт в пекарне и бизнесе",
+                novH: "Частный бизнес и ремесло",
+                novP: "С нуля построил и управлял собственной пекарней. Изучил тонкости выпечки хлеба и сомсы, привлек к работе своих дядей, обучил их ремеслу и руководил процессом.",
+                dubaiTitle: "Международный опыт // Дубай",
+                dubaiH: "Работа в ресторанном секторе",
+                dubaiP: "Получил практический опыт международного сервиса в ресторанной индустрии Дубая. Также сформировал международную киберспортивную команду по PUBG Mobile.",
+                techTitle: "Технологии и Интересы",
+                techH: "Программирование и Автоматизация",
+                techP: "Создаю Telegram-боты ( UC-бот, панели управления) на Python, aiogram, JS, а также PWA-приложения на Vercel/Supabase.",
+                socialTitle: "Активность в соцсетях",
+                complaint: "Есть проблемы? Жалобы и предложения",
+                alertText: "По вопросам, проблемам или предложениям обращайтесь напрямую в Telegram (@recon_ae)."
+            },
+            en: {
+                tagline: "Hub for technologies, operational management, esports, and innovative projects.",
+                nav1: "📦 Uzum & Work",
+                nav2: "🥖 Bakery & Business",
+                nav3: "✈️ Restaurant & Dubai",
+                nav4: "💻 Interests & Tech",
+                uzumTitle: "Uzum Market // Operations & Management",
+                uzumH: "Lead Coach & Mentor",
+                uzumP: "Achieved high results at Uzum Market, working as a Lead Coach and Mentor supporting pick-up point (PVZ/BTP) administrators across 3 regions, overseeing operations and training staff. Fluent in 3 languages and managing tasks via Jira.",
+                novTitle: "Bakery & Business Experience",
+                novH: "Private Business & Craft",
+                novP: "Built and managed my own bakery from scratch. Mastered baking craft, involved my uncles, taught them the skills, and successfully ran the operations.",
+                dubaiTitle: "International Experience // Dubai",
+                dubaiH: "Hospitality & Restaurant Sector",
+                dubaiP: "Gained practical international hospitality and service experience in Dubai's restaurant industry. Also formed an international PUBG Mobile esports team.",
+                techTitle: "Technologies & Interests",
+                techH: "Programming & Automation",
+                techP: "Building Telegram bots (UC store bot, admin dashboards) using Python, aiogram, JS, and PWA apps on Vercel/Supabase.",
+                socialTitle: "Social Media Activity",
+                complaint: "Any issues? Complaints & Suggestions",
+                alertText: "For any issues, complaints, or suggestions, please contact directly via Telegram (@recon_ae)."
+            }
+        };
+
+        let currentLang = 'uz';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            let t = translations[lang];
+            document.getElementById('t-tagline').innerText = t.tagline;
+            document.getElementById('t-nav1').innerText = t.nav1;
+            document.getElementById('t-nav2').innerText = t.nav2;
+            document.getElementById('t-nav3').innerText = t.nav3;
+            document.getElementById('t-nav4').innerText = t.nav4;
+            document.getElementById('t-uzum-title').innerText = t.uzumTitle;
+            document.getElementById('t-uzum-h').innerText = t.uzumH;
+            document.getElementById('t-uzum-p').innerText = t.uzumP;
+            document.getElementById('t-nov-title').innerText = t.novTitle;
+            document.getElementById('t-nov-h').innerText = t.novH;
+            document.getElementById('t-nov-p').innerText = t.novP;
+            document.getElementById('t-dubai-title').innerText = t.dubaiTitle;
+            document.getElementById('t-dubai-h').innerText = t.dubaiH;
+            document.getElementById('t-dubai-p').innerText = t.dubaiP;
+            document.getElementById('t-tech-title').innerText = t.techTitle;
+            document.getElementById('t-tech-h').innerText = t.techH;
+            document.getElementById('t-tech-p').innerText = t.techP;
+            document.getElementById('t-social-title').innerText = t.socialTitle;
+            document.getElementById('t-complaint').innerText = t.complaint;
+        }
+
         window.onload = function() {
-            if(localStorage.getItem('recon_cards')) {
-                document.getElementById('dynamic-cards').innerHTML = localStorage.getItem('recon_cards');
+            if(localStorage.getItem('recon_extra_cards')) {
+                document.getElementById('extra-cards').innerHTML = localStorage.getItem('recon_extra_cards');
             }
-            if(localStorage.getItem('recon_links')) {
-                document.getElementById('dynamic-links').innerHTML = localStorage.getItem('recon_links');
-            }
-            if(localStorage.getItem('recon_logo')) {
-                document.getElementById('site-logo').innerText = localStorage.getItem('recon_logo');
-            }
-            if(localStorage.getItem('recon_tg')) {
-                let tg = localStorage.getItem('recon_tg');
-                document.getElementById('tg-link').href = tg;
-            }
-            if(localStorage.getItem('recon_yt')) {
-                let yt = localStorage.getItem('recon_yt');
-                document.getElementById('yt-link').href = yt;
+            if(localStorage.getItem('recon_logo_text')) {
+                let logo = localStorage.getItem('recon_logo_text');
+                document.getElementById('site-logo').innerText = logo;
             }
         }
 
@@ -429,16 +648,6 @@
             document.getElementById('cardModal').style.display = 'flex';
         }
 
-        function openImageModal() {
-            closeModal();
-            document.getElementById('imageModal').style.display = 'flex';
-        }
-
-        function openLinkModal() {
-            closeModal();
-            document.getElementById('linkModal').style.display = 'flex';
-        }
-
         function openSettingsModal() {
             closeModal();
             document.getElementById('setLogo').value = document.getElementById('site-logo').innerText;
@@ -450,58 +659,19 @@
             let desc = document.getElementById('cardDesc').value;
             if(!title || !desc) { alert("Barcha maydonlarni to'ldiring!"); return; }
 
-            let cardHTML = `<div class="card"><h3>${title}</h3><p>${desc}</p></div>`;
-            document.getElementById('dynamic-cards').innerHTML += cardHTML;
-            localStorage.setItem('recon_cards', document.getElementById('dynamic-cards').innerHTML);
+            let cardHTML = `<div class="card"><h3>📌 ${title}</h3><p>${desc}</p></div>`;
+            document.getElementById('extra-cards').innerHTML += cardHTML;
+            localStorage.setItem('recon_extra_cards', document.getElementById('extra-cards').innerHTML);
             closeModal();
             alert("Muvaffaqiyatli qo'shildi!");
         }
 
-        function saveImage() {
-            let title = document.getElementById('imgTitle').value;
-            let fileInput = document.getElementById('imgFile');
-            if(fileInput.files && fileInput.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function(e) {
-                    let imgHTML = `<div class="card"><h3>${title || 'Rasm'}</h3><img src="${e.target.result}" alt="RECON Image"></div>`;
-                    document.getElementById('dynamic-cards').innerHTML += imgHTML;
-                    localStorage.setItem('recon_cards', document.getElementById('dynamic-cards').innerHTML);
-                    closeModal();
-                    alert("Rasm muvaffaqiyatli yuklandi!");
-                }
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
-                alert("Iltimos, rasm tanlang!");
-            }
-        }
-
-        function saveLink() {
-            let name = document.getElementById('linkName').value;
-            let url = document.getElementById('linkUrl').value;
-            if(!name || !url) { alert("Barcha maydonlarni to'ldiring!"); return; }
-
-            let linkHTML = `<a href="${url}" target="_blank" class="btn"><span>🔗 ${name}</span></a>`;
-            document.getElementById('dynamic-links').innerHTML += linkHTML;
-            localStorage.setItem('recon_links', document.getElementById('dynamic-links').innerHTML);
-            closeModal();
-            alert("Havola qo'shildi!");
-        }
-
         function saveSettings() {
             let logo = document.getElementById('setLogo').value;
-            let tg = document.getElementById('setTg').value;
-            let yt = document.getElementById('setYt').value;
-
             document.getElementById('site-logo').innerText = logo;
-            document.getElementById('tg-link').href = tg;
-            document.getElementById('yt-link').href = yt;
-
-            localStorage.setItem('recon_logo', logo);
-            localStorage.setItem('recon_tg', tg);
-            localStorage.setItem('recon_yt', yt);
-
+            localStorage.setItem('recon_logo_text', logo);
             closeModal();
-            alert("Sozlamalar saqlandi!");
+            alert("Saqlandi!");
         }
     </script>
 </body>
