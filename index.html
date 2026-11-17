@@ -19,7 +19,6 @@
             overflow-x: hidden;
         }
 
-        /* Background Glow Effects */
         .glow-bg {
             position: fixed;
             top: 0;
@@ -66,9 +65,8 @@
             line-height: 1.6;
         }
 
-        /* Sections */
         section {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -89,13 +87,8 @@
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 20px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
             text-align: left;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(96, 165, 250, 0.4);
+            position: relative;
         }
 
         .card h3 {
@@ -107,9 +100,17 @@
         .card p {
             color: #cbd5e1;
             line-height: 1.6;
+            margin-bottom: 15px;
         }
 
-        /* Buttons Grid */
+        .card img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+
         .links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -145,27 +146,113 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(96, 165, 250, 0.2);
+            border: 1px solid #60a5fa;
             color: white;
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
             z-index: 100;
             backdrop-filter: blur(5px);
-            transition: background 0.3s;
+            box-shadow: 0 4px 20px rgba(96, 165, 250, 0.4);
+            transition: transform 0.3s;
         }
 
         .admin-trigger:hover {
+            transform: scale(1.1);
             background: #60a5fa;
         }
 
-        /* Scroll indicator */
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 450px;
+            text-align: left;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 20px;
+            color: #60a5fa;
+        }
+
+        .modal-content label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        .modal-content input, .modal-content textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 15px;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-save { background: #3b82f6; color: white; }
+        .btn-cancel { background: rgba(255, 255, 255, 0.1); color: white; }
+
+        .action-options button {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 10px;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .action-options button:hover {
+            background: rgba(96, 165, 250, 0.2);
+            border-color: #60a5fa;
+        }
+
         .scroll-down {
             position: absolute;
             bottom: 30px;
@@ -185,61 +272,236 @@
 
     <div class="glow-bg"></div>
 
-    <!-- Admin Trigger Button -->
-    <div class="admin-trigger" onclick="openAdmin()" title="Tahrirlash">+</div>
+    <!-- Admin Trigger Button (+) -->
+    <div class="admin-trigger" onclick="checkAuth()">+</div>
 
-    <!-- Header / Hero Section -->
+    <!-- Main Header -->
     <header>
-        <div class="logo">RECON</div>
-        <p class="tagline">Texnologiyalar, avtomatlashtirish, e-sport va ijod birlashgan yagona shaxsiy makon.</p>
+        <div class="logo" id="site-logo">RECON</div>
+        <p class="tagline" id="site-tagline">Texnologiyalar, avtomatlashtirish, e-sport va ijod birlashgan yagona shaxsiy makon.</p>
         <div class="scroll-down">↓</div>
     </header>
 
-    <!-- Experience Section -->
-    <section id="experience">
+    <!-- Experience / Content Section -->
+    <section id="content-section">
         <div class="container">
-            <h2 style="font-size: 2.2rem; margin-bottom: 30px; color: #f8fafc;">Tajriba & Faoliyat</h2>
-            
-            <div class="card">
-                <h3>Uzum Market // Lead Mentor</h3>
-                <p>Pick-up punktlari (PVZ / BTP) bo‘yicha operatsiyalarni boshqarish, hududlarda jarayonlarni optimizatsiya qilish va yangi kadrlarni yo‘naltirish bo‘yicha yetakchi tajriba.</p>
-            </div>
-
-            <div class="card">
-                <h3>Dubai // Hospitality & Esports</h3>
-                <p>Dubaida restoran industriyasida tajriba to‘plash hamda xalqaro darajadagi e-sport jamoasini shakllantirish yo‘lidagi muhim qadamlar.</p>
+            <h2 style="font-size: 2.2rem; margin-bottom: 30px; color: #f8fafc;">Faoliyat & Loyihalar</h2>
+            <div id="dynamic-cards">
+                <div class="card">
+                    <h3>Uzum Market // Lead Mentor</h3>
+                    <p>Pick-up punktlari (PVZ / BTP) bo‘yicha operatsiyalarni boshqarish va jarayonlarni optimizatsiya qilish.</p>
+                </div>
+                <div class="card">
+                    <h3>Dubai // Hospitality & Esports</h3>
+                    <p>Dubaida restoran industriyasida tajriba to‘plash va e-sport jamoasini shakllantirish.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Links & Social Section -->
+    <!-- Links Section -->
     <section id="socials">
         <div class="container">
             <h2 style="font-size: 2.2rem; margin-bottom: 30px; color: #f8fafc;">Aloqa & Tarmoqlar</h2>
-            <p style="color: #9ca3af; margin-bottom: 30px;">Asosiy sahifalar va ijodiy kanallarimga bir bosishda o‘ting.</p>
-            
             <div class="links-grid" id="dynamic-links">
-                <a href="https://t.me/recon_ae" target="_blank" class="btn">
+                <a href="https://t.me/recon_ae" target="_blank" class="btn" id="tg-link">
                     <span>💬 Telegram (@recon_ae)</span>
                 </a>
-                <a href="https://youtube.com/@RECONBASEL" target="_blank" class="btn">
+                <a href="https://youtube.com/@RECONBASEL" target="_blank" class="btn" id="yt-link">
                     <span>📺 YouTube (@RECONBASEL)</span>
                 </a>
             </div>
         </div>
     </section>
 
+    <!-- Main Action Modal -->
+    <div class="modal" id="actionModal">
+        <div class="modal-content">
+            <h3>RECON Admin Panel</h3>
+            <div class="action-options">
+                <button onclick="openCardModal()">📝 Yangi Blok / Ma'lumot qo'shish</button>
+                <button onclick="openImageModal()">🖼️ Rasm yuklash va qo'shish</button>
+                <button onclick="openLinkModal()">🔗 Havola (Link) qo'shish</button>
+                <button onclick="openSettingsModal()">⚙️ Sayt sozlamalari (Logo & Links)</button>
+            </div>
+            <div class="modal-buttons" style="margin-top: 20px;">
+                <button class="modal-btn btn-cancel" onclick="closeModal()">Yopish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Specific Modals for Inputs -->
+    <div class="modal" id="cardModal">
+        <div class="modal-content">
+            <h3>Yangi Blok Qo'shish</h3>
+            <label>Sarlavha:</label>
+            <input type="text" id="cardTitle" placeholder="Masalan: Yangi Loyiha">
+            <label>Tavsif:</label>
+            <textarea id="cardDesc" placeholder="Batafsil ma'lumot yozing..."></textarea>
+            <div class="modal-buttons">
+                <button class="modal-btn btn-save" onclick="saveCard()">Qo'shish</button>
+                <button class="modal-btn btn-cancel" onclick="closeModal()">Bekor qilish</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <h3>Rasm Qo'shish</h3>
+            <label>Sarlavha:</label>
+            <input type="text" id="imgTitle" placeholder="Rasm nomi">
+            <label>Rasmni tanlang (Fayl):</label>
+            <input type="file" id="imgFile" accept="image/*">
+            <div class="modal-buttons">
+                <button class="modal-btn btn-save" onclick="saveImage()">Yuklash</button>
+                <button class="modal-btn btn-cancel" onclick="closeModal()">Bekor qilish</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="linkModal">
+        <div class="modal-content">
+            <h3>Yangi Havola Qo'shish</h3>
+            <label>Havola nomi (Mavzusi):</label>
+            <input type="text" id="linkName" placeholder="Masalan: GitHub Profilim">
+            <label>URL Manzil:</label>
+            <input type="text" id="linkUrl" placeholder="https://...">
+            <div class="modal-buttons">
+                <button class="modal-btn btn-save" onclick="saveLink()">Qo'shish</button>
+                <button class="modal-btn btn-cancel" onclick="closeModal()">Bekor qilish</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <h3>Sayt Sozlamalari</h3>
+            <label>Brend Nomi (Logo):</label>
+            <input type="text" id="setLogo" value="RECON">
+            <label>Telegram Link:</label>
+            <input type="text" id="setTg" value="https://t.me/recon_ae">
+            <label>YouTube Link:</label>
+            <input type="text" id="setYt" value="https://youtube.com/@RECONBASEL">
+            <div class="modal-buttons">
+                <button class="modal-btn btn-save" onclick="saveSettings()">Saqlash</button>
+                <button class="modal-btn btn-cancel" onclick="closeModal()">Bekor qilish</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function openAdmin() {
+        // Load saved data on startup
+        window.onload = function() {
+            if(localStorage.getItem('recon_cards')) {
+                document.getElementById('dynamic-cards').innerHTML = localStorage.getItem('recon_cards');
+            }
+            if(localStorage.getItem('recon_links')) {
+                document.getElementById('dynamic-links').innerHTML = localStorage.getItem('recon_links');
+            }
+            if(localStorage.getItem('recon_logo')) {
+                document.getElementById('site-logo').innerText = localStorage.getItem('recon_logo');
+            }
+            if(localStorage.getItem('recon_tg')) {
+                let tg = localStorage.getItem('recon_tg');
+                document.getElementById('tg-link').href = tg;
+            }
+            if(localStorage.getItem('recon_yt')) {
+                let yt = localStorage.getItem('recon_yt');
+                document.getElementById('yt-link').href = yt;
+            }
+        }
+
+        function checkAuth() {
             let pass = prompt("Parolni kiriting (Eslatma / Podskazka: r.n):");
             if (pass === "recon.basel") {
-                let newTitle = prompt("Yangi bo‘lim sarlavhasini kiriting (yoki rasm havolasi):");
-                if (newTitle) {
-                    alert("Muvaffaqiyatli qabul qilindi! (Bu yerga qo'shimcha kontentni saqlash kodini ulashingiz mumkin).");
-                }
+                document.getElementById('actionModal').style.display = 'flex';
             } else if (pass !== null) {
                 alert("Parol noto‘g‘ri!");
             }
+        }
+
+        function closeModal() {
+            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        }
+
+        function openCardModal() {
+            closeModal();
+            document.getElementById('cardModal').style.display = 'flex';
+        }
+
+        function openImageModal() {
+            closeModal();
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function openLinkModal() {
+            closeModal();
+            document.getElementById('linkModal').style.display = 'flex';
+        }
+
+        function openSettingsModal() {
+            closeModal();
+            document.getElementById('setLogo').value = document.getElementById('site-logo').innerText;
+            document.getElementById('settingsModal').style.display = 'flex';
+        }
+
+        function saveCard() {
+            let title = document.getElementById('cardTitle').value;
+            let desc = document.getElementById('cardDesc').value;
+            if(!title || !desc) { alert("Barcha maydonlarni to'ldiring!"); return; }
+
+            let cardHTML = `<div class="card"><h3>${title}</h3><p>${desc}</p></div>`;
+            document.getElementById('dynamic-cards').innerHTML += cardHTML;
+            localStorage.setItem('recon_cards', document.getElementById('dynamic-cards').innerHTML);
+            closeModal();
+            alert("Muvaffaqiyatli qo'shildi!");
+        }
+
+        function saveImage() {
+            let title = document.getElementById('imgTitle').value;
+            let fileInput = document.getElementById('imgFile');
+            if(fileInput.files && fileInput.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let imgHTML = `<div class="card"><h3>${title || 'Rasm'}</h3><img src="${e.target.result}" alt="RECON Image"></div>`;
+                    document.getElementById('dynamic-cards').innerHTML += imgHTML;
+                    localStorage.setItem('recon_cards', document.getElementById('dynamic-cards').innerHTML);
+                    closeModal();
+                    alert("Rasm muvaffaqiyatli yuklandi!");
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert("Iltimos, rasm tanlang!");
+            }
+        }
+
+        function saveLink() {
+            let name = document.getElementById('linkName').value;
+            let url = document.getElementById('linkUrl').value;
+            if(!name || !url) { alert("Barcha maydonlarni to'ldiring!"); return; }
+
+            let linkHTML = `<a href="${url}" target="_blank" class="btn"><span>🔗 ${name}</span></a>`;
+            document.getElementById('dynamic-links').innerHTML += linkHTML;
+            localStorage.setItem('recon_links', document.getElementById('dynamic-links').innerHTML);
+            closeModal();
+            alert("Havola qo'shildi!");
+        }
+
+        function saveSettings() {
+            let logo = document.getElementById('setLogo').value;
+            let tg = document.getElementById('setTg').value;
+            let yt = document.getElementById('setYt').value;
+
+            document.getElementById('site-logo').innerText = logo;
+            document.getElementById('tg-link').href = tg;
+            document.getElementById('yt-link').href = yt;
+
+            localStorage.setItem('recon_logo', logo);
+            localStorage.setItem('recon_tg', tg);
+            localStorage.setItem('recon_yt', yt);
+
+            closeModal();
+            alert("Sozlamalar saqlandi!");
         }
     </script>
 </body>
